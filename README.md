@@ -1,3 +1,2 @@
-# react-ts-6dgjcy
-
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-ts-6dgjcy)
+1、yarn(添加依赖)
+2、yarn start(运行)
