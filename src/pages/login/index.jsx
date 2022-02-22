@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { useTheme } from "@mui/material/styles";
+import React, { useState, useContext } from 'react';
+import { useTheme } from '@mui/material/styles';
 import {
   Tabs,
   CardMedia,
@@ -10,19 +10,19 @@ import {
   Card,
   TextField,
   Snackbar,
-} from "@mui/material";
-import { AccountCircle, Lock } from "@mui/icons-material";
+} from '@mui/material';
+import { AccountCircle, Lock } from '@mui/icons-material';
 
-import MuiAlert from "@mui/material/Alert";
-import { useHistory } from "react-router-dom";
-import SendIcon from "@mui/icons-material/Send";
-import { userLogin } from "../../api/login";
-import { baseInfo } from "../../mock/login";
-import { storage } from "../../tools";
-import loginBG from "../../assets/images/loginBG.jpg";
-import loginLogo from "../../assets/images/loginLogo.png";
+import MuiAlert from '@mui/material/Alert';
+import { useHistory } from 'react-router-dom';
+import SendIcon from '@mui/icons-material/Send';
+import { userLogin } from '../../api/login';
+import { baseInfo } from '../../mock/login';
+import { storage } from '../../tools';
+import loginBG from '../../assets/images/loginBG.jpg';
+// import loginLogo from "../../assets/images/loginLogo.png";
 
-import { AppDispatch } from "../../App";
+import { AppDispatch } from '../../App';
 
 const Login = (props) => {
   const theme = useTheme();
@@ -30,19 +30,19 @@ const Login = (props) => {
 
   const { state, dispatch } = useContext(AppDispatch);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const requestLogin = () => {
-    if ((username ?? "") === "" || (password ?? "") === "") {
+    if ((username ?? '') === '' || (password ?? '') === '') {
       return;
     }
 
     dispatch({
-      type: "api.request",
+      type: 'api.request',
       data: {
-        url: "/user/login",
-        method: "POST",
+        url: '/user/login',
+        method: 'POST',
         data: {
           userName: username,
           passWord: password,
@@ -52,19 +52,19 @@ const Login = (props) => {
   };
 
   const handleCloseSnackBar = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     dispatch({
-      type: "update.snackBarLogin",
+      type: 'update.snackBarLogin',
       data: {
         show: false,
-        content: "",
-        type: "warning",
+        content: '',
+        type: 'warning',
       },
     });
     dispatch({
-      type: "auth.update",
+      type: 'auth.update',
       data: true,
     });
   };
@@ -73,16 +73,16 @@ const Login = (props) => {
     <section>
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100vh",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '100vh',
           // backgroundImage: `url(${loginBG})`,
           // backgroundRepeat: "no-repeat",
           // backgroundSize: "100% 100%",
           backgroundColor: theme.palette.themeMode
-            ? "#fafafa"
+            ? '#fafafa'
             : theme.palette.background.paper,
         }}
       >
@@ -102,11 +102,11 @@ const Login = (props) => {
               height: 70,
               background: theme.palette.primary.main,
             }}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
           >
-            <Typography component="div" variant="h5" color={"white"}>
+            <Typography component="div" variant="h5" color={'white'}>
               {baseInfo.appName}
             </Typography>
           </Box>
@@ -114,23 +114,23 @@ const Login = (props) => {
             sx={{
               height: 290,
             }}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
           >
             <Box
               sx={{
-                width: "50%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                width: '50%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
-              <CardMedia component="img" image={loginLogo} alt="" />
+              {/* <CardMedia component="img" image={loginLogo} alt="" /> */}
             </Box>
             <Box
               sx={{
-                width: "50%",
+                width: '50%',
               }}
             >
               <Box
@@ -152,9 +152,9 @@ const Login = (props) => {
                 </Typography>
               </Box>
               <Box pl={3} pr={4}>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }} pt={1}>
+                <Box sx={{ display: 'flex', alignItems: 'flex-end' }} pt={1}>
                   <AccountCircle
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                    sx={{ color: 'action.active', mr: 1, my: 0.5 }}
                   />
                   <TextField
                     label="请输入用户名"
@@ -169,8 +169,8 @@ const Login = (props) => {
                     }}
                   />
                 </Box>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }} pt={1}>
-                  <Lock sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                <Box sx={{ display: 'flex', alignItems: 'flex-end' }} pt={1}>
+                  <Lock sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                   <TextField
                     label="请输入密码"
                     variant="standard"
@@ -186,7 +186,7 @@ const Login = (props) => {
                   />
                 </Box>
               </Box>
-              <Box display={"flex"} justifyContent={"center"} mt={3}>
+              <Box display={'flex'} justifyContent={'center'} mt={3}>
                 <Button
                   variant="outlined"
                   endIcon={<SendIcon />}
@@ -203,7 +203,7 @@ const Login = (props) => {
       </div>
       <Snackbar
         open={state.snackBarLogin.show}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         autoHideDuration={2000}
         onClose={() => handleCloseSnackBar()}
       >
@@ -211,7 +211,7 @@ const Login = (props) => {
           elevation={6}
           variant="filled"
           severity={state.snackBarLogin.type}
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
         >
           {state.snackBarLogin.content}
         </MuiAlert>
